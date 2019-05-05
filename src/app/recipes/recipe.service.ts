@@ -7,7 +7,6 @@ import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service
   providedIn: 'root'
 })
 export class RecipeService {
-  selectedRecipe = new EventEmitter<Recipe>();
   private recipes: Recipe[] = [
     new Recipe('Idli',
       'Idli or idly are a type of savoury rice cake, originating from the Indian subcontinent, popular as breakfast foods in southern India and northern Sri Lanka.',
