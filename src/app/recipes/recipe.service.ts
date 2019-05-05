@@ -1,20 +1,45 @@
 import { Injectable, EventEmitter } from '@angular/core';
 import { Recipe } from 'src/app/recipes/recipe';
+import { Ingredient } from 'src/app/shared/ingredient';
+import { ShoppingListService } from 'src/app/shopping-list/shopping-list.service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RecipeService {
   selectedRecipe = new EventEmitter<Recipe>();
-  private recipes: Recipe[]= [
-    new Recipe('Pestry','Pestry desc','https://cook.fnr.sndimg.com/content/dam/images/cook/fullset/2013/6/25/0/CC_kelsey-nixon-smores-bars-recipe-2_s4x3.jpg.rend.hgtvcom.966.725.suffix/1372183746016.jpeg'),
-    new Recipe('Cake ','Cake desc','https://happycakestudio.files.wordpress.com/2017/11/img_3546.jpg?w=1277&h=1277'),
-    new Recipe('Fruit','Fruit desc','https://5.imimg.com/data5/EE/LS/MY-40752636/red-apple-500x500.jpg')
-  ];
-  constructor() { }
+  private recipes: Recipe[] = [
+    new Recipe('Idli',
+      'Idli or idly are a type of savoury rice cake, originating from the Indian subcontinent, popular as breakfast foods in southern India and northern Sri Lanka.',
+      'https://vaya.in/recipes/wp-content/uploads/2018/02/Idli-and-Sambar-1.jpg',
+      [
+        new Ingredient('rice', 1)
+      ]
+    ),
+    new Recipe('Cake ',
+      'Cake is a form of sweet dessert that is typically baked.',
+      'https://happycakestudio.files.wordpress.com/2017/11/img_3546.jpg?w=1277&h=1277',
+      [
+        new Ingredient('chocolate', 3),
+        new Ingredient('sugar', 1)
+      ]
+    ),
+    new Recipe('Fried Rice',
+      'Fried rice is a dish of cooked rice',
+      'https://i1.wp.com/www.mrspskitchen.net/wp-content/uploads/20171004-_TDP0298.jpg',
+      [
+        new Ingredient('rice', 1),
+        new Ingredient('carrot', 2)
+      ]
 
-  getRecipe(){
+    )
+  ];
+  constructor(private sl: ShoppingListService) { }
+
+  getRecipe() {
     return this.recipes.slice();
   }
-  
+  addIngredientsToShoppingList(ingredients:Ingredient[]){
+    this.sl.addIngredients(ingredients);
+  }
 }
