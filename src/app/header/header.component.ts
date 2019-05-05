@@ -8,8 +8,7 @@ import { } from '@angular/core/src/metadata/directives';
 })
 export class HeaderComponent implements OnInit {
   @Output() featureSelected = new EventEmitter<string>();
-  isTopHeaderToggle = false;
-  isManageHeaderToggle = false;
+  isTopHeaderToggle = true;
   constructor() { }
 
   ngOnInit() {
@@ -17,13 +16,5 @@ export class HeaderComponent implements OnInit {
   onSelect(feature: string) {
     this.featureSelected.emit(feature);
     this.isTopHeaderToggle = false;
-  }
-  onTopHeaderToggle() {
-    this.isTopHeaderToggle = !this.isTopHeaderToggle;
-  }
-  onManageHeaderToggle(){
-    this.isManageHeaderToggle = !this.isManageHeaderToggle;
-    console.log('onManageHeaderToggle : ',this.isManageHeaderToggle);
-    
   }
 }
